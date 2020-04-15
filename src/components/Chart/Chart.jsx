@@ -31,9 +31,32 @@ const Chart = (props) => {
             />) : null
     )
 
+    const barChart = (
+        
+        <Bar
+            data = {{
+                labels : ['Infected','Recovered','Deaths' ],
+                datasets : [{
+                    label : 'People',
+                    backgroundColor : [
+                        'rgba (0, 0, 255, 0.5)',
+                        'rgba (0, 255, 0, 0.5)',
+                        'rgba (255, 0, 0, 0.5)'
+                    ],
+                    data : [props.confirmed, props.recovered, props.deaths]
+                }]
+            }}  
+            options = {{
+                legend : {display:false},
+                title : {display:true, text:`Current state in ${props.country}`} 
+            }}                  
+        /> )
+    
+
     return (
         <div className={classes.container}> 
-            {lineChart}
+            {props.country ? barChart : lineChart}
+            {/* {barChart} */}
         </div>
     )
 }
